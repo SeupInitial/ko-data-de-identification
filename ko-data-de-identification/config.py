@@ -1,0 +1,3 @@
+heuristicsNameData = [
+    "예시"
+]
