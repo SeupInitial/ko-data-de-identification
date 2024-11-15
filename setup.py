@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fr:
 
 setuptools.setup(
     name="example-pkg-scdev-pd-columns",
-    version="0.0.1",
+    version="0.1.0",
     author="HAN HOJIN",
     author_email="seupjak@korea.ac.kr",
     description="All-In-One Data De-identification Tool in Korean",
