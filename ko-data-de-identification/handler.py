@@ -1,4 +1,6 @@
+import re
 import hashlib
+
 from config import heuristicsNameData
 
 
@@ -13,9 +15,11 @@ class Pseudonymize:
     def __init__(self, objname, strdump):
         self.objname = objname
         self.strdump = strdump
-    def heuristics(self):
+    def subname(self):
         return None
-    def encryptall(self):
+    def subschool(self):
+        return None
+    def encall(self):
         return None
     def swapall(self):
         return None
@@ -66,4 +70,25 @@ class SuppressData:
 2)공백과 대체
 """
 class Mask:
-    #hmm
+    def __init__(self, strdump):
+        self.strdump = strdump
+    
+    # 주민등록번호(Resident Number) 마스킹
+    def maskres(self, rawText):
+        p = re.compile(r'(\d{2})(0[1-9]|1[0-2])(0[1-9]|[1-2]\d|3[0-1])[-\s]?(1|2|3|4)(\d{6})')
+        
+        def checkBirth(match):
+            date_of_birth = f"{match.group(1)}{match.group(2)}{match.group(3)}"
+            gen = match.group(5)
+            return f"{date_of_birth}-{gen}******"
+        
+        try:
+            protectedText = p.sub(checkBirth, rawText)
+            return protectedText
+        except Exception as e:
+            raise RuntimeError(f"Error Detected: {e}")
+
+    # 전화번호(Phone Number) 마스킹
+    def maskphone(self, rawText):
+        p = re.compile()
+        return protectedText
